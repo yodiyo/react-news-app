@@ -20,7 +20,7 @@ const App = () => {
 				.then( ( data ) => setNewsData( data ) )
 				.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
 		}
-	})
+	}, [ selectedCountry ] );
 
 	const handleSelectChange = e => {
 		setSelectedCountry( e.target.value );
