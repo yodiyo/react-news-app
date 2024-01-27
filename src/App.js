@@ -27,7 +27,7 @@ const App = () => {
 	}
 
 	return (
-		<div>
+		<section>
 			<h2>News Headlines from Around the World</h2>
 			<label htmlFor="selectCountry">Choose a country: </label>
 			<SelectComponent
@@ -47,7 +47,7 @@ const App = () => {
 					</ul>
 				</div>
 			}
-		</div>
+		</section>
 	);
 };
 
