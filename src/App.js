@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import SelectComponent from './components/SelectComponent';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const NewsComponent = () => {
+	const [ selectedOption, setSelectedOption ] = useState( '' );
+
+	const options = [
+		{ value: 'gb', label: 'United Kingdom' },
+		{ value: 'us', label: 'United States' },
+		{ value: 'fr', label: 'France' },
+		{ value: 'au', label: 'Australia' },
+		{ value: 'in', label: 'India' }
+	];
+
+	const handleSelectChange = e => {
+		setSelectedOption( e.target.value );
+	}
+
+	return (
+		<div>
+			<h2>News Headlines from Around the World</h2>
+			<SelectComponent options={ options } onChange={ handleSelectChange } />
+			<p>selected option: { selectedOption }</p>
+		</div>
+	)
 }
 
-export default App;
+
+export default NewsComponent;
