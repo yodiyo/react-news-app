@@ -29,7 +29,14 @@ const App = () => {
 	return (
 		<div>
 			<h2>News Headlines from Around the World</h2>
-			<SelectComponent options={ options } onChange={ handleSelectChange } value={ selectedCountry } />
+			<label htmlFor="selectCountry">Choose a country: </label>
+			<SelectComponent
+				options={ options }
+				onChange={ handleSelectChange }
+				value={ selectedCountry }
+				ariaLabel="Select country"
+				id="selectCountry"
+			/>
 			{ newsData &&
 				<div>
 					<h3>Top Headlines in { options.find( ( option ) => option.value === selectedCountry )?.label }</h3>
