@@ -3,7 +3,7 @@ import SelectComponent from './components/SelectComponent';
 import { fetchNewsData } from './components/api';
 
 const App = () => {
-	const [ selectedCountry, setSelectedCountry ] = useState( '' );
+	const [ selectedCountry, setSelectedCountry ] = useState( 'gb' );
 	const [ newsData, setNewsData ] = useState( null );
 
 	const options = [
@@ -34,7 +34,7 @@ const App = () => {
 				<div>
 					<h3>Top headlines in [COUNTRY]</h3>
 					<ul>
-						{ newsData.articles.map( ( article, index ) => (
+						{ newsData.articles.slice( 0, 5 ).map( ( article, index ) => (
 						<li key={ index }>{ article.title }</li>
 						) ) }
 					</ul>
