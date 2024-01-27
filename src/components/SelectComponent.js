@@ -12,7 +12,7 @@ const SelectComponent = ( { options, onChange, value } ) => {
 				</option>
 			) ) }
 		</select>
-	)
+	);
 };
 
 export default SelectComponent;

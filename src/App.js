@@ -29,17 +29,17 @@ const App = () => {
 	return (
 		<div>
 			<h2>News Headlines from Around the World</h2>
-			<SelectComponent options={ options } onChange={ handleSelectChange } />
-			{ newsData && (
+			<SelectComponent options={ options } onChange={ handleSelectChange } value={ selectedCountry } />
+			{ newsData &&
 				<div>
-					<h3>Top headlines in [COUNTRY]</h3>
+					<h3>Top Headlines in { options.find( ( option ) => option.value === selectedCountry )?.label }</h3>
 					<ul>
-						{ newsData.articles.slice( 0, 5 ).map( ( article, index ) => (
+						{ newsData.articles.slice( 0, 5 ).map( ( article, index ) =>
 						<li key={ index }>{ article.title }</li>
-						) ) }
+						) }
 					</ul>
 				</div>
-			) }
+			}
 		</div>
 	);
 };
