@@ -2,10 +2,39 @@ import React, { useState, useEffect } from 'react';
 import SelectComponent from './components/SelectComponent';
 import { fetchNewsData } from './components/api';
 
+
+/**
+ * React component displaying the top headlines based on the selected country.
+ *
+ * @component
+ * @example
+ *
+ * Usage in another component:
+ * import App from './App';
+ * <APP />
+ *
+ * @returns { JSX.Element } React component
+ */
 const App = () => {
+	/**
+	 * State for the selected country.
+	 *
+	 * @type { string }
+	 */
 	const [ selectedCountry, setSelectedCountry ] = useState( 'gb' );
+
+	/**
+ 	 * State for fetched data.
+	 *
+	 * @type { Object | null }
+ 	 */
 	const [ newsData, setNewsData ] = useState( null );
 
+	/**
+ 	 * Countries for the select box.
+	 *
+	 * @type { Array }
+ 	 */
 	const options = [
 		{ value: 'gb', label: 'United Kingdom' },
 		{ value: 'us', label: 'United States' },
@@ -14,6 +43,9 @@ const App = () => {
 		{ value: 'in', label: 'India' }
 	];
 
+	/**
+     * useEffect hook to fetch news data when the component mounts or when selectedCountry changes.
+     */
 	useEffect( () => {
 		if ( selectedCountry ) {
 			fetchNewsData( selectedCountry )
@@ -22,6 +54,11 @@ const App = () => {
 		}
 	}, [ selectedCountry ] );
 
+	/**
+	 * Handles the change event of the select box.
+	 *
+	 * @param { Object } e - change event object.
+	 */
 	const handleSelectChange = e => {
 		setSelectedCountry( e.target.value );
 	}

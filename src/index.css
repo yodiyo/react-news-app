@@ -12,6 +12,7 @@ code {
 	monospace;
 }
 
+/* Center page components */
 #root {
 	display: flex;
 	justify-content: center;
