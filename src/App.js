@@ -7,8 +7,8 @@ import { fetchNewsData } from './components/api';
  * React component displaying the top headlines based on the selected country.
  *
  * @component
- * @example
  *
+ * @example
  * Usage in another component:
  * import App from './App';
  * <APP />
