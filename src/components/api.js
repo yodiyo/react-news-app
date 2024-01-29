@@ -6,7 +6,7 @@
  * @returns { Promise<Object> } - a promise that resolves to the fetched data.
  */
 const fetchNewsData = ( country ) => {
-	const apiKey = 'fe49560682c14a77a09b508d4191ae48';
+	const apiKey = 'f9095cd6a5b445a4b094b58b1a2b69a0';
 	const apiUrl = `https://newsapi.org/v2/top-headlines?country=${ country }&apiKey=${ apiKey }`;
 
 	return fetch( apiUrl )
