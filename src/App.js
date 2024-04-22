@@ -22,11 +22,12 @@ const App = () => {
 	 * @type { string }
 	 */
 	const [ selectedCountry, setSelectedCountry ] = useState( 'gb' );
+	const [ selectedTopic, setSelectedTopic ] = useState( 'general' );
 
 	/**
  	 * State for fetched data.
 	 *
-	 * @type { Object | null }
+	 * @type { Object }
  	 */
 	const [ newsData, setNewsData ] = useState( null );
 
@@ -35,7 +36,7 @@ const App = () => {
 	 *
 	 * @type { Array }
  	 */
-	const options = [
+	const countryOptions = [
 		{ value: 'gb', label: 'United Kingdom' },
 		{ value: 'us', label: 'United States' },
 		{ value: 'fr', label: 'France' },
@@ -43,20 +44,32 @@ const App = () => {
 		{ value: 'in', label: 'India' }
 	];
 
+	const topicOptions = [
+		{ value: 'general', label: 'General' },
+		{ value: 'world', label: 'World' },
+		{ value: 'nation', label: 'Nation' },
+		{ value: 'business', label: 'Business' },
+		{ value: 'technology', label: 'Technology' },
+		{ value: 'entertainment', label: 'Entertainment' },
+		{ value: 'sports', label: 'Sports' },
+		{ value: 'science', label: 'Science' },
+		{ value: 'health', label: 'Health' }
+	];
+
 	/**
      * useEffect hook to fetch news data when the component mounts or when selectedCountry changes.
      */
 	useEffect( () => {
-		if ( selectedCountry ) {
-			fetchNewsData( selectedCountry )
+		if ( selectedCountry && selectedTopic ) {
+			fetchNewsData( selectedCountry, selectedTopic )
 				.then( ( data ) => {
           setNewsData( data );
-          console.log(data.json());
+          console.log(data);
         })
-				.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
+			.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
 
 		}
-	}, [ selectedCountry ] );
+	}, [ selectedCountry, selectedTopic ] );
 
 	/**
 	 * Handles the change event of the select box.
@@ -67,26 +80,47 @@ const App = () => {
 		setSelectedCountry( e.target.value );
 	}
 
+	const handleChangeTopic = e => {
+		setSelectedTopic( e.target.value );
+	}
+
 	return (
 		<section>
-			<h2>News Headlines from Around the World</h2>
-			<label htmlFor="selectCountry">Choose a country: </label>
-			<SelectComponent
-				options={ options }
-				onChange={ handleChange }
-				value={ selectedCountry }
-				ariaLabel="Select country"
-				id="selectCountry"
-			/>
+			<header>
+				<h1>News Headlines from Around the World</h1>
+			</header>
+			<form>
+				<label htmlFor="selectCountry">Choose a country: </label>
+				<SelectComponent
+					options={ countryOptions }
+					onChange={ handleChange }
+					value={ selectedCountry }
+					ariaLabel="Select country"
+					id="selectCountry"
+				/>
+				<label htmlFor="selectTopic">Choose a topic: </label>
+				<SelectComponent
+					options={ topicOptions }
+					onChange={ handleChangeTopic }
+					value={ selectedTopic }
+					ariaLabel="Select topic"
+					id="selectTopic"
+				/>
+			</form>
 			{ newsData &&
-				<div>
-					<h3>Top Headlines in { options.find( ( option ) => option.value === selectedCountry )?.label }</h3>
+				<section>
+					<h3>Top Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h3>
 					<ul>
-						{ newsData.articles.slice( 0, 5 ).map( ( article, index ) =>
-						<li key={ index }>{ article.title }</li>
+						{ newsData.articles.map( ( article, index ) =>
+						<li key={ index }>
+							{/* No alt tag available, so don't send image to a11y api.*/}
+							<img src={ article.image } alt="" aria-hidden="true" />
+							<a href={ article.url }>{ article.title }</a>
+							<p>{ article.description }</p>
+						</li>
 						) }
 					</ul>
-				</div>
+				</section>
 			}
 		</section>
 	);
