@@ -49,8 +49,12 @@ const App = () => {
 	useEffect( () => {
 		if ( selectedCountry ) {
 			fetchNewsData( selectedCountry )
-				.then( ( data ) => setNewsData( data ) )
+				.then( ( data ) => {
+          setNewsData( data );
+          console.log(data.json());
+        })
 				.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
+
 		}
 	}, [ selectedCountry ] );
 
@@ -59,7 +63,7 @@ const App = () => {
 	 *
 	 * @param { Object } e - change event object.
 	 */
-	const handleSelectChange = e => {
+	const handleChange = e => {
 		setSelectedCountry( e.target.value );
 	}
 
@@ -69,7 +73,7 @@ const App = () => {
 			<label htmlFor="selectCountry">Choose a country: </label>
 			<SelectComponent
 				options={ options }
-				onChange={ handleSelectChange }
+				onChange={ handleChange }
 				value={ selectedCountry }
 				ariaLabel="Select country"
 				id="selectCountry"
