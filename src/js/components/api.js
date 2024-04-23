@@ -6,7 +6,8 @@
  * @returns { Promise<Object> } - a promise that resolves to the fetched data.
  */
 const fetchNewsData = ( country, topic ) => {
-	const apiKey = '73b11fd29d8f3c08c1e155cd289c498d'; //'e4b936ab244da3ae1b97fec4f8263641';
+	// const apiKey = '73b11fd29d8f3c08c1e155cd289c498d';
+	const apiKey = 'e4b936ab244da3ae1b97fec4f8263641';
 	const apiUrl = `https://gnews.io/api/v4/top-headlines?country=${ country }&category=${topic}&apikey=${ apiKey }&max=10`;
 
 	return fetch( apiUrl )

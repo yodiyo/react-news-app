@@ -48,6 +48,18 @@ main {
 			}
 		}
 	}
+
+	@media (min-width: 768px) {
+		ul {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
+
+			li {
+				margin-bottom: 0;
+			}
+		}
+	}
 }
 
 form {
@@ -64,6 +76,25 @@ form {
 	select {
 		width: 100%;
 		margin-bottom: 2rem;
+	}
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+	    justify-content: left;
+		gap: 2rem;
+
+		.form-select {
+			display: flex;
+			align-items: baseline;
+
+			label {
+				margin-right: 1rem;
+			}
+
+			select {
+				width: auto;
+			}
+		}
 	}
 }
 
