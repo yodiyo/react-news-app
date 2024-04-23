@@ -10,12 +10,12 @@ import { FormattedDate } from './components/formattedDate';
  *
  * @example
  * Usage in another component:
- * import App from './App';
- * <APP />
+ * import NewsApp from './NewsApp';
+ * <NewsApp />
  *
  * @returns { JSX.Element } React component
  */
-const App = () => {
+const NewsApp = () => {
 	/**
 	 * State for the selected country.
 	 *
@@ -29,8 +29,8 @@ const App = () => {
 	 *
 	 * @type { Object }
  	 */
-	// const [ newsData, setNewsData ] = useState( null );
-	const newsData = {
+	const [ newsData, setNewsData ] = useState( null );
+	/* const newsData = {
 		"totalArticles": 54904,
 		"articles": [
 		  {
@@ -46,7 +46,7 @@ const App = () => {
 			}
 		  }
 		]
-	  };
+	  };*/
 
 	/**
  	 * Countries for the select box.
@@ -85,7 +85,7 @@ const App = () => {
 		if ( selectedCountry && selectedTopic ) {
 			fetchNewsData( selectedCountry, selectedTopic )
 				.then( ( data ) => {
-          //  setNewsData( data );
+          setNewsData( data );
           console.log(data);
         })
 			.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
@@ -112,26 +112,30 @@ const App = () => {
 				<h1>News Headlines from Around the World</h1>
 			</header>
 			<form>
-				<label htmlFor="selectCountry">Choose a country: </label>
-				<SelectComponent
-					options={ countryOptions }
-					onChange={ handleChange }
-					value={ selectedCountry }
-					ariaLabel="Select country"
-					id="selectCountry"
-				/>
-				<label htmlFor="selectTopic">Choose a topic: </label>
-				<SelectComponent
-					options={ topicOptions }
-					onChange={ handleChangeTopic }
-					value={ selectedTopic }
-					ariaLabel="Select topic"
-					id="selectTopic"
-				/>
+				<div className="form-select">
+					<label htmlFor="selectCountry">Choose a country: </label>
+					<SelectComponent
+						options={ countryOptions }
+						onChange={ handleChange }
+						value={ selectedCountry }
+						ariaLabel="Select country"
+						id="selectCountry"
+					/>
+				</div>
+				<div className="form-select">
+					<label htmlFor="selectTopic">Choose a topic: </label>
+					<SelectComponent
+						options={ topicOptions }
+						onChange={ handleChangeTopic }
+						value={ selectedTopic }
+						ariaLabel="Select topic"
+						id="selectTopic"
+					/>
+				</div>
 			</form>
 			{ newsData &&
-				<section>
-					<h3>Top Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h3>
+				<main>
+					<h2>Top { topicOptions.find( ( option ) => option.value === selectedTopic )?.label } Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h2>
 					<ul>
 						{ newsData.articles.map( ( article, index ) =>
 						<li key={ index }>
@@ -143,10 +147,10 @@ const App = () => {
 						</li>
 						) }
 					</ul>
-				</section>
+				</main>
 			}
 		</>
 	);
 };
 
-export default App;
+export default NewsApp;

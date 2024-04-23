@@ -1,7 +1,7 @@
 /**
  *
  * @param { string } date
- * @return string
+ * @returns string
  */
 const FormattedDate = ( date ) => {
 	const dateObj = new Date(date);
@@ -11,13 +11,15 @@ const FormattedDate = ( date ) => {
 	/** Using Intl.DateTimeFormat to output friendly date and time.
 	 * More info https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat.
 	*/
-	const formattedDate = new Intl.DateTimeFormat('navigator.language', {
-		hour: 'numeric',
-		minute: 'numeric',
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
+	const formattedDate = new Intl.DateTimeFormat(
+		lang,
+		{
+			hour   : 'numeric',
+			minute : 'numeric',
+			weekday: 'long',
+			year   : 'numeric',
+			month  : 'long',
+			day    : 'numeric',
 	}).format(dateObj);
 
 	return formattedDate;
