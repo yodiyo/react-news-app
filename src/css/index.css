@@ -9,65 +9,77 @@ body {
 header {
 	display: flex;
 	justify-content: center;
-	padding: 2rem;
-	margin-bottom: 2rem;
-	border-bottom: 3px solid var(--border-color);
+	align-items: flex-end;
+	margin-bottom: 4rem;
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1)), url(/public/flipboard-9-QUC4fm8Lo-unsplash.jpg);
+	background-size: cover;
+	background-position-y: bottom;
+	height: 50vh;
 
 	.page-title {
+		font-size: 2rem;
+		font-weight: 400;
+		width: 100%;
 		text-align: center;
 		text-transform: uppercase;
 		margin: 0;
+		vertical-align: middle;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+		@media (min-width: 768px) {
+			font-size: 4rem;
+		}
 	}
 }
 
 main {
-	padding-left: 2rem;
-	padding-right: 2rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	@media (min-width: 768px) {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
 
 	.newsapp-listings__articles {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-		gap: 2rem;
+		gap: 3rem;
+		margin-bottom: 3rem;
+	}
 
-		.newsapp-listings__article {
-			border: 1px solid var(--border-color);
-			padding: 1rem;
-			border-radius: 1rem;
-			box-shadow: 0.1rem 0.1rem var(--border-color);
+	.newsapp-article__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 
-			.newsapp-article__image {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-
-				@media (min-width: 768px) {
-					max-height: 18vh;
-				}
-			}
-
-			.newsapp-article__meta {
-				display: flex;
-				justify-content: space-between;
-				margin-bottom: 1rem;
-			}
-
-			.newsapp-article__source {
-				color: #333;
-				font-weight: 400;
-				margin-bottom: 5px;
-			}
-
-			.newsapp-article__link {
-				color: #000;
-				text-decoration: none;
-				font-weight: 700;
-
-				&:hover {
-					text-decoration: underline;
-				}
-			}
+		@media (min-width: 768px) {
+			max-height: 18vh;
 		}
 	}
+
+	.newsapp-article__meta {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	.newsapp-article__source {
+		color: #333;
+		font-weight: 400;
+		margin-bottom: 5px;
+	}
+
+	.newsapp-article__link {
+		color: #000;
+		text-decoration: none;
+		font-weight: 700;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 }
 
 .newsapp-form {
@@ -111,7 +123,6 @@ main {
 }
 
 .site-footer {
-	margin-top: 2rem;
 	border-top: 3px solid var(--border-color);
 
 	.site-footer__credits,
@@ -146,9 +157,4 @@ main {
 	.site-copyright {
 		font-size: 1rem;
 	}
-}
-
-.list-reset {
-	padding-left: 0;
-	list-style: none;
 }

@@ -128,16 +128,16 @@ const NewsApp = () => {
 					<div role="region" aria-live="polite">
 						<h2 className="newsapp-listings__heading">Top { topicOptions.find( ( option ) => option.value === selectedTopic )?.label } Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h2>
 					</div>
-					<ul className="newsapp-listings__articles list-reset">
+					<ul className="newsapp-listings__articles">
 						{ newsData.articles.map( ( article, index ) =>
 						<li className="newsapp-listings__article" key={ index }>
 							<article>
 								{/* No alt tag available, so don't send image to a11y api.*/}
 								<img className="newsapp-article__image" src={ article.image } alt="" aria-hidden="true" />
-								<section className="newsapp-article__meta">
+								<div className="newsapp-article__meta">
 									<p className="newsapp-article__date">{ formattedDate( article.publishedAt ) }</p>
 									<p className="newsapp-article__source">{ article.source.name }</p>
-								</section>
+								</div>
 								<a className="newsapp-article__link" href={ article.url }>{ article.title }</a>
 
 								<p className="newsapp-article__description">{ article.description }</p>
@@ -148,22 +148,21 @@ const NewsApp = () => {
 				</main>
 			}
 			<footer className="site-footer">
-				<section className="site-footer__info">
+				<div className="site-footer__info">
 					<h3>Sources</h3>
-					<ul className="list-sources list-reset">
+					<ul className="list-sources">
 						<li className="source__gnews"><a href="https://gnews.io/"><img src="https://gnews.io/assets/images/logo-black.svg" alt="Logo for GNews" width="250px"/></a></li>
 					</ul>
-				</section>
-				<section className="site-footer__credits">
-					<ul className="list-credits list-reset">
-						<li><a href="mailto:info@theyoricktouch.com"><i className="fa fa-envelope"></i></a></li>
-						<li><a href="https://twitter.com/kciroy"><i className="fa-brands fa-x-twitter"></i></a></li>
-						<li><a href="https://uk.linkedin.com/in/theyoricktouch/"><i className="fa fa-linkedin"></i></a></li>
-						<li><a href="https://github.com/yodiyo"><i className="fa fa-github"></i></a></li>
+				</div>
+				<div className="site-footer__credits">
+					<ul className="list-credits">
+						<li><a href="mailto:info@theyoricktouch.com"><i className="fa fa-envelope"></i><span className="screen-reader-only">Email</span></a></li>
+						<li><a href="https://twitter.com/kciroy"><i className="fa-brands fa-x-twitter"></i><span className="screen-reader-only">X formerly known as Twitter</span></a></li>
+						<li><a href="https://uk.linkedin.com/in/theyoricktouch/"><i className="fa fa-linkedin"></i><span className="screen-reader-only">LinkedIn</span></a></li>
+						<li><a href="https://github.com/yodiyo"><i className="fa fa-github"></i><span className="screen-reader-only">Github</span></a></li>
 					</ul>
 					<p className="site-copyright">&copy; Yorick Brown 2024</p>
-				</section>
-
+				</div>
 			</footer>
 		</>
 	);

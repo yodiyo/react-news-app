@@ -5,8 +5,3 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-.page-title {
-	font-family: 'Times New Roman', Times, serif;
-	font-size: 1.6rem;
-}
