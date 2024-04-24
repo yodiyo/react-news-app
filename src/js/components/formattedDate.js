@@ -15,9 +15,8 @@ const formattedDate = ( date ) => {
 		{
 			hour   : 'numeric',
 			minute : 'numeric',
-			weekday: 'long',
 			year   : 'numeric',
-			month  : 'long',
+			month  : 'short',
 			day    : 'numeric',
 	}).format(dateObj);
 

@@ -70,16 +70,12 @@ const NewsApp = () => {
      */
 	useEffect( () => {
 		if ( selectedCountry && selectedTopic ) {
-			console.log(selectedCountryRef.current);
-			console.log(selectedTopicRef.current);
-
 			if ( ! selectedCountryRef.current[ selectedCountry ] && ! selectedTopicRef.current[ selectedTopic ] ){
 				fetchNewsData( selectedCountry, selectedTopic )
 				.then( ( data ) => {
 					selectedCountryRef.current = selectedCountry;
 					selectedTopicRef.current = selectedTopic;
 					setNewsData( data );
-					console.log(data);
 				})
 				.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
 			}
@@ -102,48 +98,73 @@ const NewsApp = () => {
 	return (
 		<>
 			<header>
-				<h1>News Headlines from Around the World</h1>
+				<h1 className="page-title">News Headlines from Around the World</h1>
 			</header>
-			<form>
-				<div className="form-select">
-					<label htmlFor="selectCountry">Choose a country: </label>
-					<SelectComponent
-						options={ countryOptions }
-						onChange={ handleChange }
-						value={ selectedCountry }
-						ariaLabel="Select country"
-						id="selectCountry"
-					/>
-				</div>
-				<div className="form-select">
-					<label htmlFor="selectTopic">Choose a topic: </label>
-					<SelectComponent
-						options={ topicOptions }
-						onChange={ handleChangeTopic }
-						value={ selectedTopic }
-						ariaLabel="Select topic"
-						id="selectTopic"
-					/>
-				</div>
-			</form>
+
 			{ newsData &&
 				<main>
-					<h2>Top { topicOptions.find( ( option ) => option.value === selectedTopic )?.label } Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h2>
-					<ul>
+					<form className='newsapp-form'>
+						<div className="newsapp-form__select">
+							<label htmlFor="selectCountry">Choose a country: </label>
+							<SelectComponent
+								options={ countryOptions }
+								onChange={ handleChange }
+								value={ selectedCountry }
+								ariaLabel="Select country"
+								id="selectCountry"
+							/>
+						</div>
+						<div className="newsapp-form__select">
+							<label htmlFor="selectTopic">Choose a topic: </label>
+							<SelectComponent
+								options={ topicOptions }
+								onChange={ handleChangeTopic }
+								value={ selectedTopic }
+								ariaLabel="Select topic"
+								id="selectTopic"
+							/>
+						</div>
+					</form>
+					<div role="region" aria-live="polite">
+						<h2 className="newsapp-listings__heading">Top { topicOptions.find( ( option ) => option.value === selectedTopic )?.label } Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h2>
+					</div>
+					<ul className="newsapp-listings__articles list-reset">
 						{ newsData.articles.map( ( article, index ) =>
-						<li key={ index }>
-							{/* No alt tag available, so don't send image to a11y api.*/}
-							<img src={ article.image } alt="" aria-hidden="true" />
-							<p>{ article.source.name }</p>
-							<a href={ article.url }>{ article.title }</a>
-							<p>{ formattedDate( article.publishedAt ) }</p>
-							<p>{ article.description }</p>
+						<li className="newsapp-listings__article" key={ index }>
+							<article>
+								{/* No alt tag available, so don't send image to a11y api.*/}
+								<img className="newsapp-article__image" src={ article.image } alt="" aria-hidden="true" />
+								<section class="newsapp-article__meta">
+									<p className="newsapp-article__date">{ formattedDate( article.publishedAt ) }</p>
+									<p className="newsapp-article__source">{ article.source.name }</p>
+								</section>
+								<a className="newsapp-article__link" href={ article.url }>{ article.title }</a>
 
+								<p className="newsapp-article__description">{ article.description }</p>
+							</article>
 						</li>
 						) }
 					</ul>
 				</main>
 			}
+			<footer className="site-footer">
+				<section className="site-footer__info">
+					<h3>Sources</h3>
+					<ul className="list-reset">
+						<li>News API - <a href="https://gnews.io/">GNews</a></li>
+					</ul>
+				</section>
+				<section className="site-footer__credits">
+					<ul className="list-credits list-reset">
+						<li><a href="mailto:info@theyoricktouch.com"><i className="fa fa-envelope"></i></a></li>
+						<li><a href="https://twitter.com/kciroy"><i className="fa-brands fa-x-twitter"></i></a></li>
+						<li><a href="https://uk.linkedin.com/in/theyoricktouch/"><i className="fa fa-linkedin"></i></a></li>
+						<li><a href="https://github.com/yodiyo"><i className="fa fa-github"></i></a></li>
+					</ul>
+					<p className="site-copyright">&copy; Yorick Brown 2024</p>
+				</section>
+
+			</footer>
 		</>
 	);
 };
