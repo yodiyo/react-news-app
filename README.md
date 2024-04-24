@@ -1,8 +1,8 @@
 # Project Title
-News App
+Yorick's React News App
 
 ## Demo link:
-Access my site at [https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/](https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/)
+Access application at [https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/](https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/)
 
 ## Table of Content:
 
