@@ -14,9 +14,15 @@ const fetchNewsData = ( country, topic ) => {
 
 	return fetch(
 			apiUrl
-			// './data.json' // test data, to be removed pre-launch.
+			//'./data.json' // test data, to be removed pre-launch.
 		)
-		.then( ( response ) => response.json() )
+		.then( ( response ) => {
+			if ( ! response.ok ) {
+				console.log(response.json);
+				throw new Error(`Status: ${ response.status }` || 'Network response was not ok');
+			}
+			return response.json();
+		} )
 		.catch( ( error ) => {
 			console.error( 'Error fetching news data', error );
 			throw error;

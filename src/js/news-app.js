@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Header from './components/Header';
 import SelectComponent from './components/SelectComponent';
 import { fetchNewsData } from './components/api';
 import { formattedDate } from './components/formattedDate';
+import Footer from './components/Footer';
 
 /**
  * React component displaying the top headlines based on the selected country.
@@ -30,6 +32,8 @@ const NewsApp = () => {
 	 * @type { Object }
  	 */
 	const [ newsData, setNewsData ] = useState( null );
+	const [ isLoading, setIsLoading ] = useState( true );
+	const [ error, setError ] = React.useState( null );
 
 	// Declare a ref object
 	const selectedCountryRef = useRef({});
@@ -75,9 +79,15 @@ const NewsApp = () => {
 				.then( ( data ) => {
 					selectedCountryRef.current = selectedCountry;
 					selectedTopicRef.current = selectedTopic;
+					setIsLoading(false);
+					setError(null);
 					setNewsData( data );
 				})
-				.catch( ( error ) => console.error( 'Error setting news data: ', error ) );
+				.catch( ( error ) => {
+					setIsLoading(false);
+					setError(error);
+					console.error( 'Error setting news data: ', error );
+				} )
 			}
 		}
 	}, [ selectedCountry, selectedTopic ] );
@@ -97,10 +107,18 @@ const NewsApp = () => {
 
 	return (
 		<>
-			<header>
-				<h1 className="page-title">News Headlines from Around the World</h1>
-			</header>
-
+			<Header title="News Headlines from Around the World" />
+			{ isLoading &&
+				<p className="data-loading">Loading...</p>
+			}
+			{ error &&
+				<>
+					<div className="notice">
+						<span>{ error.message }</span>
+						<p>It looks like we've hit our limit on the API for today. Please return tomorrow for a fresh start! </p>
+					</div>
+				</>
+			}
 			{ newsData &&
 				<main>
 					<form className='newsapp-form'>
@@ -128,8 +146,9 @@ const NewsApp = () => {
 					<div role="region" aria-live="polite">
 						<h2 className="newsapp-listings__heading">Top { topicOptions.find( ( option ) => option.value === selectedTopic )?.label } Headlines in { countryOptions.find( ( option ) => option.value === selectedCountry )?.label }</h2>
 					</div>
+
 					<ul className="newsapp-listings__articles">
-						{ newsData.articles.map( ( article, index ) =>
+						{ newsData.articles?.map( ( article, index ) =>
 						<li className="newsapp-listings__article" key={ index }>
 							<article>
 								{/* No alt tag available, so don't send image to a11y api.*/}
@@ -147,23 +166,7 @@ const NewsApp = () => {
 					</ul>
 				</main>
 			}
-			<footer className="site-footer">
-				<div className="site-footer__info">
-					<h3>Sources</h3>
-					<ul className="list-sources">
-						<li className="source__gnews"><a href="https://gnews.io/"><img src="https://gnews.io/assets/images/logo-black.svg" alt="Logo for GNews" width="250px"/></a></li>
-					</ul>
-				</div>
-				<div className="site-footer__credits">
-					<ul className="list-credits">
-						<li><a href="mailto:info@theyoricktouch.com"><i className="fa fa-envelope"></i><span className="screen-reader-only">Email</span></a></li>
-						<li><a href="https://twitter.com/kciroy"><i className="fa-brands fa-x-twitter"></i><span className="screen-reader-only">X formerly known as Twitter</span></a></li>
-						<li><a href="https://uk.linkedin.com/in/theyoricktouch/"><i className="fa fa-linkedin"></i><span className="screen-reader-only">LinkedIn</span></a></li>
-						<li><a href="https://github.com/yodiyo"><i className="fa fa-github"></i><span className="screen-reader-only">Github</span></a></li>
-					</ul>
-					<p className="site-copyright">&copy; Yorick Brown 2024</p>
-				</div>
-			</footer>
+			<Footer />
 		</>
 	);
 };

@@ -31,3 +31,9 @@
 		text-decoration: underline;
 	}
 }
+
+.notice,
+.data-loading {
+	text-align: center;
+	margin: var(--spacing-xxl) auto;
+}
