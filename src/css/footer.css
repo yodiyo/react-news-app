@@ -1,0 +1,36 @@
+.site-footer {
+	border-top: var(--border-width) solid var(--color-grey-light);
+
+	.site-footer__credits,
+	.site-footer__info {
+		text-align: center;
+
+		.source__gnews {
+			display: inline-block;
+
+			img {
+				width: var(--spacing-xxl);
+			}
+		}
+	}
+
+	.site-footer__credits {
+		margin: var(--spacing-xl) 0 var(--spacing-s);
+	}
+
+	.list-credits {
+		li {
+			display: inline-block;
+			padding-left: var(--spacing-xs);
+			padding-right: var(--spacing-xs);
+
+			i.fa, i.fa-brands {
+				font-size: var(--spacing-m);
+			}
+		}
+	}
+
+	.site-copyright {
+		font-size: var(--spacing-s);
+	}
+}

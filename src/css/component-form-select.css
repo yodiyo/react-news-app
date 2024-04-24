@@ -1,0 +1,39 @@
+.newsapp-form {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+
+	label {
+		display: block;
+		margin-bottom: var(--spacing-s);
+	}
+
+	select {
+		width: 100%;
+		margin-bottom: var(--spacing-m);
+		padding: 0.5rem;
+		font-size: var(--spacing-s);
+		border: 1px solid #ccc;
+		border-radius: 0.25rem;
+		margin-bottom: var(--spacing-s);
+	}
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		justify-content: left;
+		gap: var(--spacing-m);
+
+		.newsapp-form__select {
+			display: flex;
+			align-items: baseline;
+
+			label {
+				margin-right: var(--spacing-s);
+			}
+
+			select {
+				width: auto;
+			}
+		}
+	}
+}
