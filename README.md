@@ -21,10 +21,11 @@ Access application at [https://feature-latest-news-headlines--chipper-melba-9f54
 ## About The App
 The News App was built to demonstrate using React to build an application showcasing displaying content from an API based on selected options, with consideration for responsiveness and accessibility.
 
-## Screenshots
+## Data source
 
 News API source:
-[GNews](https://gnews.io/)      
+[GNews](https://gnews.io/)  
+
 <img src="https://gnews.io/assets/images/logo-black.svg" width="150" />
 
 Note - the API is limited to 100 calls per day. I have 3 API keys that can be revolved and I have also added a test json file for testing purposes.
