@@ -37,8 +37,12 @@ main {
 
 			.newsapp-article__image {
 				width: 100%;
-				height: 24vh;
+				height: 100%;
 				object-fit: cover;
+
+				@media (min-width: 768px) {
+					max-height: 18vh;
+				}
 			}
 
 			.newsapp-article__meta {
@@ -113,6 +117,14 @@ main {
 	.site-footer__credits,
 	.site-footer__info {
 		text-align: center;
+
+		.source__gnews {
+			display: inline-block;
+
+			img {
+				width: 8rem;
+			}
+		}
 	}
 
 	.site-footer__credits {

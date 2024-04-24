@@ -17,7 +17,7 @@ import { formattedDate } from './components/formattedDate';
  */
 const NewsApp = () => {
 	/**
-	 * State for the selected country.
+	 * State for the selected country and selected topic.
 	 *
 	 * @type { string }
 	 */
@@ -87,7 +87,7 @@ const NewsApp = () => {
 	 *
 	 * @param { Object } e - change event object.
 	 */
-	const handleChange = e => {
+	const handleChangeCountry = e => {
 		setSelectedCountry( e.target.value );
 	}
 
@@ -108,7 +108,7 @@ const NewsApp = () => {
 							<label htmlFor="selectCountry">Choose a country: </label>
 							<SelectComponent
 								options={ countryOptions }
-								onChange={ handleChange }
+								onChange={ handleChangeCountry }
 								value={ selectedCountry }
 								ariaLabel="Select country"
 								id="selectCountry"
@@ -134,7 +134,7 @@ const NewsApp = () => {
 							<article>
 								{/* No alt tag available, so don't send image to a11y api.*/}
 								<img className="newsapp-article__image" src={ article.image } alt="" aria-hidden="true" />
-								<section class="newsapp-article__meta">
+								<section className="newsapp-article__meta">
 									<p className="newsapp-article__date">{ formattedDate( article.publishedAt ) }</p>
 									<p className="newsapp-article__source">{ article.source.name }</p>
 								</section>
@@ -150,8 +150,8 @@ const NewsApp = () => {
 			<footer className="site-footer">
 				<section className="site-footer__info">
 					<h3>Sources</h3>
-					<ul className="list-reset">
-						<li>News API - <a href="https://gnews.io/">GNews</a></li>
+					<ul className="list-sources list-reset">
+						<li className="source__gnews"><a href="https://gnews.io/"><img src="https://gnews.io/assets/images/logo-black.svg" alt="Logo for GNews" width="250px"/></a></li>
 					</ul>
 				</section>
 				<section className="site-footer__credits">
