@@ -1,0 +1,26 @@
+header {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	margin-bottom: var(--spacing-xl);
+	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 1)), url(/public/flipboard-9-QUC4fm8Lo-unsplash.jpg);
+	background-size: cover;
+	background-position-y: bottom;
+	height: 50vh;
+
+	.page-title {
+		font-size: var(--font-size-m);
+		font-weight: var(--font-bold-light);
+		width: 100%;
+		margin: 0;
+		text-align: center;
+		text-transform: uppercase;
+		vertical-align: middle;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+		@media (min-width: 768px) {
+			font-size: var(--font-size-lg);
+			margin-top: 2rem;
+		}
+	}
+}

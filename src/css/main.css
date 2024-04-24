@@ -1,0 +1,9 @@
+main {
+	padding-left: var(--spacing-s);
+	padding-right: var(--spacing-s);
+
+	@media (min-width: 768px) {
+		padding-left: var(--spacing-m);
+		padding-right: var(--spacing-m);
+	}
+}
