@@ -2,7 +2,8 @@
 Yorick's React News App
 
 ## Demo link:
-Access application at [https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/](https://feature-latest-news-headlines--chipper-melba-9f5487.netlify.app/)
+Access application at
+[https://chipper-melba-9f5487.netlify.app/](https://chipper-melba-9f5487.netlify.app/)
 
 ## Table of Content:
 
