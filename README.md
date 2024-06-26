@@ -29,7 +29,7 @@ News API source:
 
 <img src="https://gnews.io/assets/images/logo-black.svg" width="150" />
 
-Note - the API is limited to 100 calls per day. I have 3 API keys that can be revolved and I have also added a test json file for testing purposes. Any test keys and files to be removed on l
+Note - the API is limited to 100 calls per day. I have 3 API keys that can be revolved and I have also added a test json file for testing purposes. Any test keys and files to be removed on live site.
 
 I have tried to limit the number of calls by using useRef to create a mutable object for the selected option, but this side of things could be improved by caching each option, as well as fallback data files for each option. Ideally, these files would be generated on a daily basis. This is pencilled in for a later version.
 
