@@ -27,7 +27,7 @@ The News App was built to demonstrate using React to build an application showca
 News API source:
 [GNews](https://gnews.io/)
 
-<img src="https://gnews.io/assets/images/logo-black.svg" width="150" />
+<img src="./public/logo-gnews.svg" />
 
 Note - the API is limited to 100 calls per day. I have 3 API keys that can be revolved and I have also added a test json file for testing purposes. Any test keys and files to be removed on live site.
 

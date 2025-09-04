@@ -4,7 +4,10 @@ return (
 		<div className="site-footer__info">
 			<h3>Sources</h3>
 			<ul className="list-sources">
-				<li className="source__gnews"><a href="https://gnews.io/"><img src="https://gnews.io/assets/images/logo-black.svg" alt="Logo for GNews" /></a></li>
+				<li className="source__gnews">
+					<a href="https://gnews.io/">
+					<img src="./logo-gnews.svg" alt="Logo for GNews" aria-hidden="true" />GNews</a>
+				</li>
 			</ul>
 		</div>
 		<div className="site-footer__credits">
