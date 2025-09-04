@@ -1,18 +1,18 @@
 .newsapp-form {
 	display: flex;
-	justify-content: center;
 	flex-direction: column;
 
 	label {
 		display: block;
 		margin-bottom: var(--spacing-s);
+		font-size: var(--font-size-m);
 	}
 
 	select {
 		width: 100%;
 		margin-bottom: var(--spacing-m);
 		padding: 0.5rem;
-		font-size: var(--spacing-s);
+		font-size: var(--font-size-m);
 		border: 1px solid #ccc;
 		border-radius: 0.25rem;
 		margin-bottom: var(--spacing-s);
@@ -20,7 +20,7 @@
 
 	@media (min-width: 768px) {
 		flex-direction: row;
-		justify-content: left;
+		justify-content: center;
 		gap: var(--spacing-m);
 
 		.newsapp-form__select {

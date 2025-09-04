@@ -6,9 +6,12 @@
 	--spacing-xl: 4rem;
 	--spacing-xxl: 8rem;
 	--border-width: 3px;
+	--font-size-xs: 0.5rem;
 	--font-size-s: 1rem;
-	--font-size-m: 2rem;
-	--font-size-lg: 4rem;
+
+	--font-size-m: 1.5rem;
+	--font-size-lg: 2rem;
+	--font-size-xlg: 4rem;
 	--font-bold-light: 400;
 	--font-bold-dark: 700;
 	--color-grey-light: #bebebe;

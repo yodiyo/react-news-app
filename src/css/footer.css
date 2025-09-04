@@ -7,9 +7,12 @@
 
 		.source__gnews {
 			display: inline-block;
-
+			font-size: 0;
 			img {
-				width: var(--spacing-xxl);
+				display: block;
+				width: 50%;
+				margin-left: auto;
+				margin-right: auto;
 			}
 		}
 	}
@@ -24,7 +27,8 @@
 			padding-left: var(--spacing-xs);
 			padding-right: var(--spacing-xs);
 
-			i.fa, i.fa-brands {
+			i.fa,
+			i.fa-brands {
 				font-size: var(--spacing-m);
 			}
 		}
