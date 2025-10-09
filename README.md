@@ -1,5 +1,5 @@
-# Project Title
-Yorick's React News App
+# React News App
+A React application interacting with a News API and displaying results based on selected country and topic.
 
 ## Demo link:
 Access application at
