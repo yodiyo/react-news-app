@@ -1,4 +1,5 @@
-# 📰 Yorick's React News App
+# React News App
+A React application interacting with a News API and displaying results based on selected country and topic.
 
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
