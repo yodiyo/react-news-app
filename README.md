@@ -205,7 +205,7 @@ src/
 <table>
 <tr>
 <td width="40%">
-<img src="https://www.deque.com/wp-content/uploads/2024/04/anyone-balanced.svg" alt="Axe DevTools" width="100%">
+<img src="./public/logo-deque-axe-devtools.png" alt="Axe DevTools" width="100%">
 </td>
 <td width="60%" valign="top">
 

@@ -9,7 +9,7 @@
  */
 const fetchNewsData = (country, topic, max = 20) => {
 	const apiKey = process.env.REACT_APP_NEWSAPI;
-	const apiUrl = `https://gnews.io/api/v4/top-headlines?country=${country}&category=${topic}&apikey=${apiKey}&max=${max}`;
+	const apiUrl = `https://gnews.io/api/v4/top-headlines?country=${country}&category=${topic}&apikey=${apiKey}`;
 
 	return fetch(
 		apiUrl
