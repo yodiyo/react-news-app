@@ -1,0 +1,6 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "73b11fd29d8f3c08c1e155cd289c498d"
