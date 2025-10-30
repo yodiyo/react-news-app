@@ -13,7 +13,6 @@ const fetchNewsData = (country, topic, max = 20) => {
 
 	return fetch(
 		apiUrl
-		//'./data.json' // test data, to be removed pre-launch.
 	)
 		.then((response) => {
 			if (!response.ok) {
