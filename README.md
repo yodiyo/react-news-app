@@ -61,7 +61,7 @@ The React News App is a showcase application demonstrating modern React developm
 
 </td>
 <td width="40%">
-<img src="./build/static/media/Screenshot 2025-10-24 at 02.05.40.png" alt="React News App Screenshot" width="100%" style="border-radius: 8px; border: 1px solid #ddd;">
+<img src="./build/static/media/flipboard-9-QUC4fm8Lo-unsplash.d11bb2e8f5b4eea9c6c4.jpg" alt="React News App Screenshot" width="100%" style="border-radius: 8px; border: 1px solid #ddd;">
 </td>
 </tr>
 </table>
@@ -205,7 +205,7 @@ src/
 <table>
 <tr>
 <td width="40%">
-<img src="https://www.deque.com/wp-content/uploads/2019/11/axe-logo-horizontal.png" alt="Axe DevTools" width="100%">
+<img src="./public/logo-deque-axe-devtools.png" alt="Axe DevTools" width="100%">
 </td>
 <td width="60%" valign="top">
 
