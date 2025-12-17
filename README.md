@@ -154,7 +154,7 @@ cp .env.example .env.local
 # edit .env.local and set GNEWS_API_KEY=...
 
 # run the app + functions locally
-npx netlify dev
+npm run dev
 ```
 
 The application will be available at `http://localhost:3000`
@@ -164,6 +164,7 @@ The application will be available at `http://localhost:3000`
 | Command         | Description                        |
 | --------------- | ---------------------------------- |
 | `npm start`     | 🚀 Runs the app in development mode |
+| `npm run dev`   | 🔌 Runs app + Netlify Functions     |
 | `npm test`      | 🧪 Launches the test runner         |
 | `npm run build` | 📦 Builds the app for production    |
 | `npm run eject` | ⚠️ Ejects from Create React App     |
