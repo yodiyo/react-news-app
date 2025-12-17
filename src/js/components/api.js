@@ -21,6 +21,9 @@ const fetchNewsData = (country, topic, max = 20) => {
 				} catch (e) {
 					bodyText = '';
 				}
+				if (response.status === 429) {
+					throw new Error('Rate limit reached. Please wait a minute and try again.');
+				}
 				throw new Error(`News API request failed (HTTP ${response.status})${bodyText ? `: ${bodyText}` : ''}`);
 			}
 			return response.json();

@@ -52,6 +52,32 @@ const json = (statusCode, body, extraHeaders = {}) => ({
 	body: JSON.stringify(body)
 });
 
+const CACHE_TTL_MS = 60_000;
+const cache = new Map();
+
+const cacheKey = ({ country, topic, max }) => `${country}|${topic}|${max}`;
+
+const getCached = (key) => {
+	const entry = cache.get(key);
+	if (!entry) return undefined;
+	if (Date.now() > entry.expiresAt) {
+		cache.delete(key);
+		return undefined;
+	}
+	return entry;
+};
+
+const setCached = (key, value) => {
+	cache.set(key, { value, expiresAt: Date.now() + CACHE_TTL_MS });
+};
+
+const getRetryAfterSeconds = (response) => {
+	const raw = response.headers.get('retry-after');
+	if (!raw) return undefined;
+	const seconds = Number.parseInt(raw, 10);
+	return Number.isFinite(seconds) ? seconds : undefined;
+};
+
 exports.handler = async (event) => {
 	try {
 		if (event.httpMethod !== 'GET') {
@@ -80,6 +106,14 @@ exports.handler = async (event) => {
 		}
 
 		const safeMax = Number.isFinite(max) ? Math.min(Math.max(max, 1), 50) : 20;
+		const key = cacheKey({ country, topic, max: safeMax });
+		const cached = getCached(key);
+		if (cached) {
+			return json(200, cached.value, {
+				'cache-control': 'public, max-age=60, stale-while-revalidate=300',
+				'x-cache': 'HIT'
+			});
+		}
 
 		const apiUrl = new URL('https://gnews.io/api/v4/top-headlines');
 		apiUrl.searchParams.set('country', country);
@@ -91,6 +125,14 @@ exports.handler = async (event) => {
 		const text = await response.text();
 
 		if (!response.ok) {
+			const retryAfterSeconds = getRetryAfterSeconds(response);
+			if (response.status === 429) {
+				return json(429, {
+					error: 'Rate limited',
+					detail: 'Too many requests to the news provider. Please wait and try again.'
+				}, retryAfterSeconds ? { 'retry-after': String(retryAfterSeconds) } : {});
+			}
+
 			return json(response.status, {
 				error: 'Upstream request failed',
 				status: response.status,
@@ -105,7 +147,11 @@ exports.handler = async (event) => {
 			return json(502, { error: 'Invalid JSON from upstream' });
 		}
 
-		return json(200, data);
+		setCached(key, data);
+		return json(200, data, {
+			'cache-control': 'public, max-age=60, stale-while-revalidate=300',
+			'x-cache': 'MISS'
+		});
 	} catch (error) {
 		return json(500, { error: 'Unexpected error', detail: String(error?.message || error) });
 	}

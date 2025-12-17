@@ -73,7 +73,7 @@ const NewsApp = () => {
 	 * @returns { Promise<Object> } - promise that resolves to data with 10 unique articles.
 	 */
 	const fetchUniqueNewsData = useCallback(async (country, topic) => {
-		const targetCount = 10;
+		const targetCount = 9;
 		let allArticles = [];
 		let fetchSize = 20; // Start with 15 to account for potential duplicates
 		let maxAttempts = 3; // Limit attempts to avoid infinite loops
@@ -149,7 +149,7 @@ const NewsApp = () => {
 	 */
 	useEffect(() => {
 		if (selectedCountry && selectedTopic) {
-			if (!selectedCountryRef.current[selectedCountry] && !selectedTopicRef.current[selectedTopic]) {
+			if (selectedCountryRef.current !== selectedCountry || selectedTopicRef.current !== selectedTopic) {
 				fetchUniqueNewsData(selectedCountry, selectedTopic)
 					.then((data) => {
 						selectedCountryRef.current = selectedCountry;
