@@ -7,7 +7,7 @@
 
 .newsapp-article__image {
 	width: 100%;
-	height: 23vh;
+	height: 250px;
 	object-fit: cover;
 }
 

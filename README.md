@@ -141,6 +141,22 @@ npm install
 npm start
 ```
 
+### **API Key (keep it private)**
+
+This app calls the GNews API from a Netlify Function so the API key is **server-side** (it does not ship in the browser bundle).
+
+**Netlify production:**
+- Add an environment variable named `GNEWS_API_KEY` in Netlify.
+
+**Local development:**
+```bash
+cp .env.example .env.local
+# edit .env.local and set GNEWS_API_KEY=...
+
+# run the app + functions locally
+npm run dev
+```
+
 The application will be available at `http://localhost:3000`
 
 ### **Available Scripts**
@@ -148,6 +164,7 @@ The application will be available at `http://localhost:3000`
 | Command         | Description                        |
 | --------------- | ---------------------------------- |
 | `npm start`     | 🚀 Runs the app in development mode |
+| `npm run dev`   | 🔌 Runs app + Netlify Functions     |
 | `npm test`      | 🧪 Launches the test runner         |
 | `npm run build` | 📦 Builds the app for production    |
 | `npm run eject` | ⚠️ Ejects from Create React App     |
