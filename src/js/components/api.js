@@ -8,16 +8,20 @@
  * @returns { Promise<Object> } - a promise that resolves to the fetched data.
  */
 const fetchNewsData = (country, topic, max = 20) => {
-	const apiKey = process.env.REACT_APP_NEWSAPI;
-	const apiUrl = `https://gnews.io/api/v4/top-headlines?country=${country}&category=${topic}&apikey=${apiKey}`;
+	const apiUrl = `/.netlify/functions/news?country=${encodeURIComponent(country)}&topic=${encodeURIComponent(topic)}&max=${encodeURIComponent(max)}`;
 
 	return fetch(
 		apiUrl
 	)
-		.then((response) => {
+		.then(async (response) => {
 			if (!response.ok) {
-				console.log(response.json);
-				throw new Error(`Status: ${response.status}` || 'Network response was not ok');
+				let bodyText = '';
+				try {
+					bodyText = await response.text();
+				} catch (e) {
+					bodyText = '';
+				}
+				throw new Error(`News API request failed (HTTP ${response.status})${bodyText ? `: ${bodyText}` : ''}`);
 			}
 			return response.json();
 		})
