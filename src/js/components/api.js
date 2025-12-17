@@ -3,7 +3,7 @@
  *
  * @param { string } country - country code.
  * @param { string } topic - topic code.
- * @param { number } max - maximum number of articles to fetch (default: 10).
+ * @param { number } max - maximum number of articles to fetch (default: 20).
  *
  * @returns { Promise<Object> } - a promise that resolves to the fetched data.
  */

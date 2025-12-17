@@ -1,3 +1,45 @@
+/**
+ * Netlify serverless function that serves as a proxy for the GNews API.
+ * 
+ * This function fetches top headlines from GNews.io API with filtering by country and category.
+ * It includes input validation, response caching, error handling, and rate limit management.
+ * 
+ * @module NewsFunction
+ * 
+ * @description
+ * - Validates country codes against a whitelist of supported countries
+ * - Validates news categories against allowed topics
+ * - Implements in-memory caching with TTL (Note: cache is not persistent across serverless invocations)
+ * - Handles API rate limiting with proper HTTP status codes
+ * - Provides consistent JSON error responses
+ * 
+ * @param {Object} event - Netlify function event object
+ * @param {string} event.httpMethod - HTTP method of the request
+ * @param {Object} event.queryStringParameters - Query parameters from the request
+ * @param {string} event.queryStringParameters.country - ISO country code (e.g., 'us', 'gb')
+ * @param {string} event.queryStringParameters.topic - News category (e.g., 'technology', 'sports')
+ * @param {string} event.queryStringParameters.max - Maximum number of articles (1-50, default: 20)
+ * 
+ * @returns {Promise<Object>} Netlify function response object
+ * @returns {number} returns.statusCode - HTTP status code
+ * @returns {Object} returns.headers - Response headers including content-type and cache-control
+ * @returns {string} returns.body - JSON stringified response body
+ * 
+ * @requires process.env.GNEWS_API_KEY - GNews API key from environment variables
+ * 
+ * @example
+ * // GET /.netlify/functions/news?country=us&topic=technology&max=10
+ * // Returns: { statusCode: 200, headers: {...}, body: "{'articles': [...]}" }
+ * 
+ * @throws {Error} Returns 500 status for unexpected errors
+ * @throws {Error} Returns 400 status for invalid parameters
+ * @throws {Error} Returns 429 status when rate limited by upstream API
+ * @throws {Error} Returns 502 status for invalid upstream responses
+ * 
+ * @note The in-memory cache using Map will not persist across serverless function 
+ *       invocations, as each invocation may run in a different container. This cache 
+ *       will only be effective within a single function instance's lifetime.
+ */
 const ALLOWED_CATEGORIES = new Set([
 	'general',
 	'world',
@@ -54,6 +96,7 @@ const json = (statusCode, body, extraHeaders = {}) => ({
 
 const CACHE_TTL_MS = 60_000;
 const cache = new Map();
+
 
 const cacheKey = ({ country, topic, max }) => `${country}|${topic}|${max}`;
 
@@ -135,8 +178,7 @@ exports.handler = async (event) => {
 
 			return json(response.status, {
 				error: 'Upstream request failed',
-				status: response.status,
-				body: text
+				status: response.status
 			});
 		}
 
