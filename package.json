@@ -13,7 +13,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node -e \"console.log('\\n[news-app] Heads up: npm start runs CRA only (NO Netlify Functions).\\n[news-app] Use npm run dev for local Functions + the private API-key proxy.\\n')\" && react-scripts start",
     "dev": "netlify dev || npx netlify-cli dev",
     "build": "react-scripts build",
     "test": "react-scripts test",

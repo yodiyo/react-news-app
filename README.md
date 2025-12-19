@@ -61,7 +61,7 @@ The React News App is a showcase application demonstrating modern React developm
 
 </td>
 <td width="40%">
-<img src="./build/static/media/flipboard-9-QUC4fm8Lo-unsplash.d11bb2e8f5b4eea9c6c4.jpg" alt="React News App Screenshot" width="100%" style="border-radius: 8px; border: 1px solid #ddd;">
+<img src="./public/flipboard-9-QUC4fm8Lo-unsplash.jpg" alt="React News App Screenshot" width="100%" style="border-radius: 8px; border: 1px solid #ddd;">
 </td>
 </tr>
 </table>
@@ -139,6 +139,10 @@ npm install
 
 # Start development server
 npm start
+# NB This does not run the Netlify function, so it will not serve the expected JSON. npm run dev.
+
+# Start development server with Netlify function
+npm run dev
 ```
 
 ### **API Key (keep it private)**
@@ -154,7 +158,7 @@ cp .env.example .env.local
 # edit .env.local and set GNEWS_API_KEY=...
 
 # run the app + functions locally
-npm run dev
+npx netlify dev
 ```
 
 The application will be available at `http://localhost:3000`
@@ -164,8 +168,8 @@ The application will be available at `http://localhost:3000`
 | Command         | Description                        |
 | --------------- | ---------------------------------- |
 | `npm start`     | 🚀 Runs the app in development mode |
-| `npm run dev`   | 🔌 Runs app + Netlify Functions     |
 | `npm test`      | 🧪 Launches the test runner         |
+| `npm run dev`   | Runs app with Netlify functions    |
 | `npm run build` | 📦 Builds the app for production    |
 | `npm run eject` | ⚠️ Ejects from Create React App     |
 

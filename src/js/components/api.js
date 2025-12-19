@@ -26,7 +26,21 @@ const fetchNewsData = (country, topic, max = 20) => {
 				}
 				throw new Error(`News API request failed (HTTP ${response.status})${bodyText ? `: ${bodyText}` : ''}`);
 			}
-			return response.json();
+
+			const contentType = response.headers.get('content-type') || '';
+			const raw = await response.text();
+			if (raw.trim().startsWith('<') || !contentType.includes('application/json')) {
+				throw new Error(
+					`Expected JSON but received ${contentType || 'unknown content-type'}. ` +
+					`This usually means the Netlify Function isn't running. Start local dev with npm run dev.`
+				);
+			}
+
+			try {
+				return JSON.parse(raw);
+			} catch (e) {
+				throw new Error(`Invalid JSON response from server: ${raw.slice(0, 120)}`);
+			}
 		})
 		.catch((error) => {
 			console.error('Error fetching news data', error);
