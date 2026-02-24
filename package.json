@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "start": "node -e \"console.log('\\n[news-app] Heads up: npm start runs CRA only (NO Netlify Functions).\\n[news-app] Use npm run dev for local Functions + the private API-key proxy.\\n')\" && react-scripts start",
